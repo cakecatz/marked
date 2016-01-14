@@ -3,7 +3,7 @@
 > A full-featured markdown parser and compiler, written in JavaScript. Built
 > for speed.
 
-[![NPM version](https://badge.fury.io/js/marked.png)][badge]
+[![Build Status](https://travis-ci.org/cakecatz/marked.svg?branch=master)](https://travis-ci.org/cakecatz/marked)
 
 ## Install
 
