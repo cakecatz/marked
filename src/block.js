@@ -1,4 +1,25 @@
 
+function noop() {
+
+}
+noop.exec = noop;
+
+
+function replace(regex_, opt_) {
+  let regex = regex_.source;
+  const opt = opt_ || '';
+  return function self(name_, val_) {
+    if (!name_) {
+      return new RegExp(regex, opt);
+    }
+    console.log(val_.source);
+    let val = val_.source || val_;
+    val = val.replace(/(^|[^\[])\^/g, '$1');
+    regex = regex.replace(name_, val);
+    return self;
+  };
+}
+
 /**
  * Block-Level Grammar
  */
@@ -17,7 +38,7 @@ const block = {
   def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)/,
   table: noop,
   paragraph: /^((?:[^\n]+\n?(?!hr|heading|lheading|blockquote|tag|def))+)\n*/,
-  text: /^[^\n]+/
+  text: /^[^\n]+/,
 };
 
 block.bullet = /(?:[*+-]|\d+\.)/;
